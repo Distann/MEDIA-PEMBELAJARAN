@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak-Tebakan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        main {
+            background: linear-gradient(45deg, #ffffff, #f2f2f2);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float 5s infinite alternate;
+        }
+
+        h2 {
+            color: #333;
+            margin: 0;
+            font-size: 2em;
+            transform: translateZ(20px);
+            background: linear-gradient(45deg, #2ecc71, #e74c3c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        form {
+            margin-top: 20px;
+            transform: translateZ(10px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            transform: translateZ(5px);
+            font-size: 1.2em;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transform: translateZ(5px);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateZ(20px);
+            }
+            100% {
+                transform: translateZ(30px);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <audio id="relaxAudio" loop>
+            <source src="Yellow.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+
+        <h2>Tebak-Tebakan</h2>
+
+        <form id="quizForm">
+            <div>
+                <label>10. Disebut apakah binatang yang dapat hidup di dua alam, yaitu darat dan laut?</label>
+                <input type="radio" name="q1" value="A"> Amfibi 
+                <input type="radio" name="q1" value="B"> Mamalia
+                <input type="radio" name="q1" value="C"> Reptil
+                <input type="radio" name="q1" value="D"> Pisces
+            </div>
+
+            <!-- Add elements for other questions -->
+
+            <button type="button" onclick="checkAnswers()">Periksa Jawaban</button>
+            <button type="button" onclick="nextQuestion()">Next</button>
+
+            <!-- Add Back button -->
+            <button type="button" onclick="goBack()">Back</button>
+        </form>
+    </main>
+
+    <script>
+        var audio = document.getElementById('relaxAudio');
+
+        // Autoplay background music
+        window.addEventListener('load', function () {
+            audio.play();
+        });
+
+        function checkAnswers() {
+            // Get the selected answer
+            var answer1 = document.querySelector('input[name="q1"]:checked').value;
+
+            // Check the answer
+            if (answer1 === 'A') {
+                alert('Jawaban anda benar!');
+            } else {
+                alert('Jawaban anda salah');
+                // Play background music when the answer is incorrect
+                audio.play();
+            }
+        }
+
+        function nextQuestion() {
+            // Use an anchor element to navigate to TERIMAKASIH.html
+            window.location.href = "TERIMAKASIH.html";
+        }
+
+        // Function to go back to BELAJAR9.html
+        function goBack() {
+            window.location.href = "BELAJAR9.html";
+        }
+    </script>
+</body>
+</html>
